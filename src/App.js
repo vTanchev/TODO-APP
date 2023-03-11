@@ -1,7 +1,13 @@
 import "./App.css";
 
+import AllTodos from "./components/AllTodos";
+
 function App() {
-  return <div></div>;
+  return (
+    <>
+      <AllTodos />
+    </>
+  );
 }
 
 export default App;

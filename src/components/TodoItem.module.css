@@ -1,0 +1,49 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  margin: 4px 0;
+  height: 44px;
+  font-size: 20px;
+  font-weight: 100;
+  color: #fff;
+  background-color: #1a1919fd;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+}
+
+.input-check {
+  width: 15px;
+  height: 15px;
+}
+
+input[type="checkbox"] {
+  accent-color: #1cfb1c;
+}
+
+.edit-svg {
+  color: #fff;
+  width: 15px;
+  height: 15px;
+}
+
+.delete-svg {
+  color: #fff;
+  width: 15px;
+  height: 15px;
+}
+
+.edit-svg:hover {
+  color: rgb(0, 119, 255);
+}
+
+.delete-svg:hover {
+  color: red;
+}
