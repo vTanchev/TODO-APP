@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-import classes from "./TodoItem.module.css";
+import { inputContext } from "./AllTodos";
 import Button from "./UI/Button";
 
-const TodoItem = ({ name, currentTodoItems, setTodoList }) => {
+import classes from "./TodoItem.module.css";
+
+const TodoItem = ({ name, id, currentTodoItems, setTodoList }) => {
   const [checked, setChecked] = useState(false);
+
+  const { input, setInput, elementToEdit, setElementToEdit } =
+    useContext(inputContext);
 
   const editHandler = () => {
     const currentEditItem = currentTodoItems.find((item) => item.todo === name);
-    console.log(currentEditItem);
+    setElementToEdit(currentEditItem);
+    setInput(currentEditItem.todo);
   };
 
   const deleteHandler = () => {
-    console.log("Delete");
-    setTodoList(currentTodoItems.filter((item) => item.todo !== name));
+    setTodoList(currentTodoItems.filter((item) => item.id !== id));
   };
 
   const checkedHandler = () => {
@@ -34,8 +39,8 @@ const TodoItem = ({ name, currentTodoItems, setTodoList }) => {
           className={classes["input-check"]}
           type={"checkbox"}
           checked={checked}
+          onChange={(checked) => !checked}
           onClick={checkedHandler}
-          onChange={() => console.log("changed")}
         />
         <Button
           onEdit={editHandler}

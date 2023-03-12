@@ -1,15 +1,14 @@
 import React, { useState, useContext } from "react";
 
-import TodoItem from "./TodoItem";
+import { inputContext } from "./AllTodos";
 
 import classes from "./AddTodo.module.css";
 
 const AddTodo = ({ addTodoItem, currentTodoItems }) => {
-  const [input, setInput] = useState("");
   const [error, setError] = useState("");
 
-  const itemCtx = useContext(TodoItem);
-  console.log(itemCtx);
+  const { input, setInput, elementToEdit, setElementToEdit } =
+    useContext(inputContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -19,11 +18,21 @@ const AddTodo = ({ addTodoItem, currentTodoItems }) => {
       return;
     }
 
+    if (elementToEdit) {
+      const updatedTodos = currentTodoItems.map((item) =>
+        item.id === elementToEdit.id ? { ...item, todo: input } : item
+      );
+
+      addTodoItem(updatedTodos);
+      setElementToEdit(null);
+    } else {
+      addTodoItem([...currentTodoItems, { todo: input, id: Math.random() }]);
+    }
+
     setError("");
     setInput("");
-
-    addTodoItem([...currentTodoItems, { todo: input, id: Math.random() }]);
   };
+  console.log(currentTodoItems);
 
   return (
     <>
@@ -35,7 +44,7 @@ const AddTodo = ({ addTodoItem, currentTodoItems }) => {
           onInput={(e) => setInput(e.target.value)}
         />
         <button type="submit" className={classes["submit-btn"]}>
-          Add new task
+          {elementToEdit ? "Edit task" : "Add new task"}
         </button>
       </form>
       <div className={classes["error"]}>
