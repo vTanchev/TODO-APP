@@ -1,9 +1,15 @@
 import "./App.css";
 
 import AllTodos from "./components/AllTodos";
+import Footer from "./components/UI/Footer";
 
-function App() {
-  return <AllTodos />;
-}
+const App = () => {
+  return (
+    <>
+      <AllTodos />
+      <Footer />
+    </>
+  );
+};
 
 export default App;

@@ -1,0 +1,18 @@
+footer {
+  text-align: center;
+  background-color: #ffffff1f;
+  color: #ffa6a6;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: #e55ef1;
+}

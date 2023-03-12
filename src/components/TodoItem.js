@@ -12,8 +12,7 @@ import classes from "./TodoItem.module.css";
 const TodoItem = ({ name, id, currentTodoItems, setTodoList }) => {
   const [checked, setChecked] = useState(false);
 
-  const { input, setInput, elementToEdit, setElementToEdit } =
-    useContext(inputContext);
+  const { setInput, setElementToEdit } = useContext(inputContext);
 
   const editHandler = () => {
     const currentEditItem = currentTodoItems.find((item) => item.todo === name);
@@ -31,10 +30,7 @@ const TodoItem = ({ name, id, currentTodoItems, setTodoList }) => {
 
   return (
     <div className={classes["todo-item"]}>
-      <div>
-        <p style={{ color: checked ? "#1cfb1c" : "white" }}>{name}</p>
-      </div>
-      <div className={classes["btns"]}>
+      <div className={classes["todo-el"]}>
         <input
           className={classes["input-check"]}
           type={"checkbox"}
@@ -42,6 +38,11 @@ const TodoItem = ({ name, id, currentTodoItems, setTodoList }) => {
           onChange={(checked) => !checked}
           onClick={checkedHandler}
         />
+        <p style={{ color: checked ? "#1cfb1c" : "white", marginLeft: "10px" }}>
+          {name}
+        </p>
+      </div>
+      <div className={classes["btns"]}>
         <Button
           onEdit={editHandler}
           name={
