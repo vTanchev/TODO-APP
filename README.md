@@ -1,6 +1,6 @@
 # Todo Application
 
-![screenshot](./src/assets/screenshot1)
+![screenshot](./src/assets/screenshot1.png)
 
 ## Built With
 
